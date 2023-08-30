@@ -10,6 +10,9 @@ module.exports = () => {
   return {
     mode: 'development',
     entry: {
+      database: './src/js/database.js',
+      header: './src/js/header.js',
+      editor: './src/js/editor.js',
       main: './src/js/index.js',
       install: './src/js/install.js'
     },
@@ -18,13 +21,46 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: "Text Editor: JATE",
+      }),
+
+      new InjectManifest({
+        swScr: './src-sw.js',
+        swDest:'./src-sw.js'
+      }),
+
+      new WebpackPwaManifest({
+        inject: true,
+        name: 'Text Editor: JATE',
+        description: 'Another text editor for your use!',
+        start_url: '/',
+        publicPath: './',
+      })
       
     ],
 
     module: {
-      rules: [
-        
-      ],
+      rules: [{
+        test: /\.css$/i,
+        use: ["style_loader", "css-loader"],
+      },
+      {
+        test: /|.m?js$/,
+        exclude: /node_modules/,
+      },
+      use: {
+        loader: bable-loader,
+        options: {
+          presets: ["@babel/preset-env"],
+          plugins: [
+            "@babel/plugin-proposal-object-rest-spread",
+            "@babel/transform-runtime",
+          ]
+        }      
+      }
+    ],
     },
   };
 };
