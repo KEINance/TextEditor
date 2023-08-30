@@ -26,11 +26,16 @@ try {
 }}
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => 
+export const getDb = async () => { 
 try {
-  const 
+  const db = await openDB("jate", 1);
+  const text = db.transaction('jate', "readonly");
+  const store = text.objectStore('jate');
+  const content = store.getall();
+  const result = await content;
+  console.log('Your additions have been secured', result);
 } catch (err) {
   console.error('getDb not implemented')
-};
+}};
 
 initdb();
