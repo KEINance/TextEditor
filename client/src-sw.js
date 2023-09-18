@@ -30,7 +30,7 @@ registerRoute(({ request }) => ['style', 'script', 'worker'].includes(request.de
 new StaleWhileRevalidate({
   cacheName: 'asset-cache',
   plugins: [
-    newCachableResponsePlugin({
+    new CacheableResponsePlugin({
       statuses: [0,200],
     })
   ]
