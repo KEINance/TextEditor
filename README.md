@@ -70,5 +70,5 @@ The following image shows the application's IndexedDB storage:
 
 ## Links
 [Repo](https://github.com/KEINance/TextEditor)
-[Deployed]()
-[Heroku]()
+[Heroku](https://dashboard.heroku.com/apps/texteditor2)
+[Heroku Deployed](https://texteditor2-730a4f7e3868.herokuapp.com/)
